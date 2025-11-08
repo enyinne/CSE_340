@@ -4,3 +4,296 @@
 *:after {
   box-sizing: border-box;
 }
+/* Colors */
+:root {
+  --primary-text: #242333;
+  --primary-background: #fff;
+  --body-font: Inter;
+  --heading-font: Literata;
+  --main-accent: #01b0d3;
+  --hightlight: #eafbea;
+  --hightlight-text: #2c3e50;
+  --paragraph-text: #444;
+  --accent1: #ccc;
+  --accent2: #ddd;
+  --accent3: #f9f9f9;
+  --accent4: #e6f2ff;
+  --hover: #0088cc;
+  --link: #0d2c54;
+}
+
+/* header.ejs */
+#top-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.siteName {
+  font-size: 2rem;
+  font-weight: 800;
+}
+
+#tools {
+  font-size: 3.5vw;
+  font-variant: small-caps;
+  display: flex;
+  width: 20%;
+  justify-content: space-evenly;
+}
+
+#tools a {
+  font-size: 1rem;
+}
+
+header>img {
+  max-width: 40%;
+}
+
+header a {
+  text-decoration: none;
+  color: var(--primary-text);
+  display: inline-block;
+  padding: 2vh 0;
+}
+
+/* navigation.ejs */
+nav {
+  background-color: var(--primary-text);
+  color: var(--primary-background);
+}
+
+nav ul {
+  display: flex;
+  padding: 0 1vw;
+  justify-content: space-around;
+}
+
+nav li {
+  list-style: none;
+  padding-top: 1em;
+  padding-bottom: 1em;
+}
+
+nav a {
+  color: var(--primary-background);
+  text-decoration: none;
+  font-size: 0.85rem;
+  padding-top: 1em;
+  padding-bottom: 1em;
+}
+
+/* General Styles */
+img {
+  max-width: 100%;
+}
+
+h1,
+h2 {
+  font-size: 1.4rem;
+  font-family: var(--heading-font), serif;
+}
+
+/* body */
+body {
+  font-family: var(--body-font), sans-serif;
+  margin: 0;
+}
+
+#wrapper {
+  width: 95%;
+  background-color: var(--primary-background);
+  margin-left: auto;
+  margin-right: auto;
+  padding-bottom: 1em;
+}
+
+.page-title {
+  font-size: 2rem;
+}
+
+/* index.ejs */
+#hero {
+  background: var(--accent3);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem;
+  border-radius: 8px;
+  margin: 1rem auto;
+  max-width: 1000px;
+}
+
+#hero h2 {
+  margin-left: 0;
+}
+
+#hero a:hover {
+  opacity: 0.5;
+}
+
+#hero li {
+  list-style: none;
+  color: var(--main-accent);
+}
+
+#hero li h2 {
+  font-size: 1.6rem;
+  margin-bottom: 0.5rem;
+}
+
+#hero ul {
+  flex: 1;
+  list-style: none;
+  padding: 1rem;
+  margin: 0;
+  background-color: rgba(255, 255, 255, 0.85);
+  border-radius: 8px;
+}
+
+#hero li {
+  font-size: 0.85em;
+}
+
+#actionbtn {
+  display: inline-block;
+  max-width: 25vw;
+  max-height: 10vh;
+  padding: 0.5rem;
+  background-color: var(--main-accent);
+  color: var(--primary-text);
+  font-weight: 800;
+  border-radius: 0.25rem;
+}
+
+#actionbtn:hover {
+  opacity: 0.5;
+}
+
+.car-image {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.car-image img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+/* For Delorian list */
+section ul {
+  padding: 0 0 0 1rem;
+}
+
+/* =========================
+   Reviews Section
+========================= */
+.reviews {
+  border-radius: 8px;
+  padding: 20px;
+  width: 40%;
+  float: right;
+  margin-right: 20px;
+}
+
+.reviews ul {
+  padding: 0;
+  margin: 0;
+}
+
+.reviews li {
+  font-size: 1rem;
+  margin-bottom: 10px;
+}
+
+.upgrades {
+  background-color: var(--primary-background);
+  border: var(--primary-text) solid 1px;
+  border-radius: 8px;
+  padding: 20px;
+  display: inline-block;
+  margin: 0 auto;
+}
+
+/* Adjusting Grid Layout for Content */
+.upgrades .grid {
+  display: grid;
+  grid-template-columns: repeat(2, auto);
+  gap: 20px;
+  justify-content: center;
+}
+
+/* Individual Grid Items */
+.upgrades .item {
+  text-align: center;
+  background-color: var(--main-accent);
+  padding: 10px;
+  border-radius: 8px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.upgrades img {
+  width: 80px;
+  height: 80px;
+  display: block;
+  margin: 0 auto 10px;
+}
+
+.upgrades a {
+  text-decoration: none;
+  color: var(--link);
+  font-weight: bold;
+}
+
+.upgrades,
+a:hover {
+  text-decoration: underline;
+}
+
+/* =========================
+   Footer
+========================= */
+footer {
+  text-align: center;
+  padding: 1em 0;
+  margin-top: 3em;
+  border-top: 2px solid #ddd;
+  font-size: 0.9rem;
+  color: #555;
+}
+
+/* =========================
+   Responsive Layout
+========================= */
+@media (max-width: 768px) {
+  nav ul {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  /* Hero stacks */
+  #hero {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .car-image {
+    justify-content: center;
+    margin-top: 1rem;
+  }
+
+  .car-image img {
+    max-width: 80%;
+  }
+
+  /* Reviews + Features stack */
+  .reviews {
+    float: none;
+    width: 100%;
+  }
+
+  .upgrades .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
