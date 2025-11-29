@@ -4,6 +4,7 @@
 *:after {
   box-sizing: border-box;
 }
+
 /* Colors */
 :root {
   --primary-text: #242333;
@@ -22,7 +23,9 @@
   --link: #0d2c54;
 }
 
-/* header.ejs */
+/* =========================
+   Header
+========================= */
 #top-header {
   display: flex;
   justify-content: space-between;
@@ -56,7 +59,9 @@ header a {
   padding: 2vh 0;
 }
 
-/* navigation.ejs */
+/* =========================
+   Navigation
+========================= */
 nav {
   background-color: var(--primary-text);
   color: var(--primary-background);
@@ -82,7 +87,9 @@ nav a {
   padding-bottom: 1em;
 }
 
-/* General Styles */
+/* =========================
+   General Styles
+========================= */
 img {
   max-width: 100%;
 }
@@ -93,7 +100,6 @@ h2 {
   font-family: var(--heading-font), serif;
 }
 
-/* body */
 body {
   font-family: var(--body-font), sans-serif;
   margin: 0;
@@ -111,7 +117,9 @@ body {
   font-size: 2rem;
 }
 
-/* index.ejs */
+/* =========================
+   Index / Hero Section
+========================= */
 #hero {
   background: var(--accent3);
   display: flex;
@@ -181,13 +189,14 @@ body {
   border-radius: 8px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
+
 /* For Delorian list */
 section ul {
   padding: 0 0 0 1rem;
 }
 
 /* =========================
-   Reviews Section
+   Reviews / Upgrades
 ========================= */
 .reviews {
   border-radius: 8px;
@@ -216,7 +225,7 @@ section ul {
   margin: 0 auto;
 }
 
-/* Adjusting Grid Layout for Content */
+/* Grid Layout for Upgrades */
 .upgrades .grid {
   display: grid;
   grid-template-columns: repeat(2, auto);
@@ -224,7 +233,6 @@ section ul {
   justify-content: center;
 }
 
-/* Individual Grid Items */
 .upgrades .item {
   text-align: center;
   background-color: var(--main-accent);
@@ -264,6 +272,88 @@ footer {
 }
 
 /* =========================
+   Vehicle Detail Styles
+========================= */
+.vehicle-detail {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.vehicle-image img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+.vehicle-info {
+  flex: 1;
+  min-width: 280px;
+}
+
+.vehicle-info h1 {
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
+
+.vehicle-info p {
+  font-size: 1rem;
+  margin: 5px 0;
+}
+
+/* =========================
+   Classification Styles
+========================= */
+.classification-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  margin-top: 20px;
+  padding: 0 10px;
+}
+
+.vehicle-card {
+  border: 1px solid var(--accent2);
+  border-radius: 8px;
+  overflow: hidden;
+  transition: transform 0.2s, box-shadow 0.2s;
+  background-color: var(--primary-background);
+}
+
+.vehicle-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.vehicle-card img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.vehicle-card .vehicle-info {
+  padding: 10px 15px;
+}
+
+.vehicle-card .vehicle-info h2 {
+  font-size: 1.25rem;
+  margin-bottom: 5px;
+}
+
+.vehicle-card .vehicle-info p {
+  font-size: 0.95rem;
+  margin: 3px 0;
+  color: var(--paragraph-text);
+}
+
+.vehicle-card .vehicle-info .price {
+  font-weight: bold;
+  color: var(--main-accent);
+  margin-top: 5px;
+}
+
+/* =========================
    Responsive Layout
 ========================= */
 @media (max-width: 768px) {
@@ -272,7 +362,6 @@ footer {
     align-items: center;
   }
 
-  /* Hero stacks */
   #hero {
     flex-direction: column;
     text-align: center;
@@ -287,7 +376,6 @@ footer {
     max-width: 80%;
   }
 
-  /* Reviews + Features stack */
   .reviews {
     float: none;
     width: 100%;
@@ -295,5 +383,50 @@ footer {
 
   .upgrades .grid {
     grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* Vehicle Detail Responsive */
+  .vehicle-detail {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .vehicle-info h1 {
+    font-size: 1.5rem;
+  }
+
+  .vehicle-info p {
+    font-size: 0.95rem;
+  }
+
+  /* Classification Responsive */
+  .classification-container {
+    gap: 15px;
+  }
+
+  .vehicle-card .vehicle-info h2 {
+    font-size: 1.1rem;
+  }
+
+  .vehicle-card .vehicle-info p {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .vehicle-info h1 {
+    font-size: 1.25rem;
+  }
+
+  .vehicle-info p {
+    font-size: 0.9rem;
+  }
+
+  .vehicle-card .vehicle-info h2 {
+    font-size: 1rem;
+  }
+
+  .vehicle-card .vehicle-info p {
+    font-size: 0.85rem;
   }
 }

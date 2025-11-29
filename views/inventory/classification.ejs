@@ -1,0 +1,12 @@
+<!-- EJS -->
+<% if (title) { %>
+<h1><%= title %></h1>
+<% } else { 
+    res.redirect('/') 
+} %>
+
+<!-- EJS disabled by comment mark (#)-->
+<%# messages() %>
+
+<!-- HTML (An EJS code block with an "unescaped" indicator —. This allows HTML to be displayed.pnpm run dev)-->
+<%- grid %>
