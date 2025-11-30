@@ -67,7 +67,7 @@ Util.buildVehicleDetail = async function(vehicle) {
   }
 
   const formattedPrice = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD" }).format(vehicle.inv_price)
-  const formattedMiles = new Intl.NumberFormat("en-US").format(vehicle.inv_miles)
+  const formattedMiles = new Intl.NumberFormat("en-US").format(vehicle.inv_mile)
 
   return `
     <section id="vehicle-detail" class="vehicle-detail">
