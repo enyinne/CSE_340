@@ -1,0 +1,24 @@
+<h1>
+    <%= title %>
+</h1>
+
+<!-- Flash Messages -->
+<% if (messages && messages.length> 0) { %>
+    <div class="flash-messages">
+        <% messages.forEach(m=> { %>
+            <p>
+                <%= m %>
+            </p>
+            <% }) %>
+    </div>
+    <% } %>
+
+        <section class="auth-container">
+            <form action="/inv/add-classification" method="POST" class="auth-form">
+                <label for="classification_name">Classification Name</label>
+                <input type="text" id="classification_name" name="classification_name" required
+                    value="<%= locals.classification_name || '' %>">
+
+                <button type="submit">Add Classification</button>
+            </form>
+        </section>

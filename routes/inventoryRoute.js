@@ -1,18 +1,46 @@
 // Needed Resources 
 const express = require("express")
-const router = new express.Router() 
+const router = new express.Router()
 const invController = require("../controllers/invController")
-const utilities = require("../utilities");
+const utilities = require("../utilities")
+const invValidate = require("../utilities/inventory-validation") // path to the validation file
 
+// Inventory Management view
+router.get("/", utilities.handleErrors(invController.buildManagement))
 
-// Route to build inventory by classification view
-router.get("/type/:classificationId", invController.buildByClassificationId);
+// Build add-classification view
+router.get("/add-classification", utilities.handleErrors(invController.buildAddClassification))
 
-// Route to build single vehicle detail view
-router.get("/detail/:inv_id", invController.buildVehicleDetail)
+// Process add-classification (POST)
+router.post("/add-classification", utilities.handleErrors(invController.addClassification))
 
-// Intentional error route for Task 3
-router.get("/trigger-error", utilities.handleErrors(invController.throwError));
+// Show add-inventory form (GET)
+router.get("/add-inventory", utilities.handleErrors(invController.buildAddInventory))
 
+// Handle add-inventory form (POST) with validation middleware
+router.post(
+  "/add-inventory",
+  // Run the validation rules first
+  invValidate.inventoryRules(),
+  // Middleware to check results and re-render form if errors
+  invValidate.checkInventory,
+  // Controller to insert inventory if no validation errors
+  utilities.handleErrors(invController.addInventory)
+)
 
-module.exports = router;
+// Inventory by classification
+router.get(
+  "/type/:classificationId",
+  utilities.handleErrors(invController.buildByClassificationId)
+)
+
+// Individual vehicle detail
+router.get(
+  "/detail/:inv_id",
+  utilities.handleErrors(invController.buildVehicleDetail)
+)
+
+// Intentional error route for Task 3 (tests middleware)
+router.get("/getInventoryError", utilities.handleErrors(invController.throwError))
+
+module.exports = router
