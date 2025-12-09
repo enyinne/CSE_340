@@ -29,6 +29,7 @@
 #top-header {
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 
 .siteName {
@@ -71,20 +72,19 @@ nav ul {
   display: flex;
   padding: 0 1vw;
   justify-content: space-around;
+  margin: 0;
 }
 
 nav li {
   list-style: none;
-  padding-top: 1em;
-  padding-bottom: 1em;
+  padding: 1em 0;
 }
 
 nav a {
   color: var(--primary-background);
   text-decoration: none;
   font-size: 0.85rem;
-  padding-top: 1em;
-  padding-bottom: 1em;
+  padding: 1em 0;
 }
 
 /* =========================
@@ -108,8 +108,7 @@ body {
 #wrapper {
   width: 95%;
   background-color: var(--primary-background);
-  margin-left: auto;
-  margin-right: auto;
+  margin: 0 auto;
   padding-bottom: 1em;
 }
 
@@ -137,16 +136,6 @@ body {
 
 #hero a:hover {
   opacity: 0.5;
-}
-
-#hero li {
-  list-style: none;
-  color: var(--main-accent);
-}
-
-#hero li h2 {
-  font-size: 1.6rem;
-  margin-bottom: 0.5rem;
 }
 
 #hero ul {
@@ -190,11 +179,6 @@ body {
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
-/* For Delorian list */
-section ul {
-  padding: 0 0 0 1rem;
-}
-
 /* =========================
    Reviews / Upgrades
 ========================= */
@@ -225,7 +209,6 @@ section ul {
   margin: 0 auto;
 }
 
-/* Grid Layout for Upgrades */
 .upgrades .grid {
   display: grid;
   grid-template-columns: repeat(2, auto);
@@ -254,8 +237,8 @@ section ul {
   font-weight: bold;
 }
 
-.upgrades,
-a:hover {
+/* FIXED: previously affected ALL links on hover */
+.upgrades a:hover {
   text-decoration: underline;
 }
 
@@ -272,7 +255,7 @@ footer {
 }
 
 /* =========================
-   Vehicle Detail Styles
+   Vehicle Detail
 ========================= */
 .vehicle-detail {
   display: flex;
@@ -281,29 +264,13 @@ footer {
   margin-top: 20px;
 }
 
-.vehicle-image img {
-  max-width: 100%;
-  height: auto;
-  border-radius: 8px;
-}
-
 .vehicle-info {
   flex: 1;
   min-width: 280px;
 }
 
-.vehicle-info h1 {
-  font-size: 2rem;
-  margin-bottom: 10px;
-}
-
-.vehicle-info p {
-  font-size: 1rem;
-  margin: 5px 0;
-}
-
 /* =========================
-   Classification Styles
+   Classification Grid
 ========================= */
 .classification-container {
   display: grid;
@@ -317,40 +284,13 @@ footer {
   border: 1px solid var(--accent2);
   border-radius: 8px;
   overflow: hidden;
-  transition: transform 0.2s, box-shadow 0.2s;
   background-color: var(--primary-background);
+  transition: transform 0.2s, box-shadow 0.2s;
 }
 
 .vehicle-card:hover {
   transform: translateY(-5px);
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-}
-
-.vehicle-card img {
-  width: 100%;
-  height: auto;
-  display: block;
-}
-
-.vehicle-card .vehicle-info {
-  padding: 10px 15px;
-}
-
-.vehicle-card .vehicle-info h2 {
-  font-size: 1.25rem;
-  margin-bottom: 5px;
-}
-
-.vehicle-card .vehicle-info p {
-  font-size: 0.95rem;
-  margin: 3px 0;
-  color: var(--paragraph-text);
-}
-
-.vehicle-card .vehicle-info .price {
-  font-weight: bold;
-  color: var(--main-accent);
-  margin-top: 5px;
 }
 
 /* =========================
@@ -365,18 +305,6 @@ footer {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
 }
 
-.auth-container h1 {
-  text-align: center;
-  margin-bottom: 1.5rem;
-  font-family: var(--heading-font), serif;
-}
-
-.auth-container p {
-  text-align: center;
-  margin-bottom: 1rem;
-  color: var(--primary-text);
-}
-
 .auth-form {
   display: flex;
   flex-direction: column;
@@ -387,43 +315,15 @@ footer {
   font-weight: 600;
 }
 
-.auth-form input {
+.auth-form input,
+.auth-form select,
+.auth-form textarea {
   padding: 0.75rem;
   margin-bottom: 1rem;
   border: 1px solid var(--accent2);
   border-radius: 6px;
   font-size: 1rem;
-}
-
-.auth-form .password-hint {
-  font-size: 0.85rem;
-  color: var(--paragraph-text);
-  margin-bottom: 1rem;
-}
-
-.btn-auth {
-  background-color: var(--main-accent);
-  color: var(--primary-background);
-  font-weight: bold;
-  border: none;
-  border-radius: 6px;
-  padding: 0.85rem;
-  cursor: pointer;
-  transition: opacity 0.2s ease;
-}
-
-.btn-auth:hover {
-  opacity: 0.85;
-}
-
-.register-link {
-  text-align: center;
-  margin-top: 1.2rem;
-}
-
-.register-link a {
-  color: var(--link);
-  text-decoration: underline;
+  width: 100%;
 }
 
 .flash-messages {
@@ -437,12 +337,25 @@ footer {
 }
 
 /* =========================
-   Responsive Layout
+   RESPONSIVE FIXES
 ========================= */
+@media (max-width: 992px) {
+  .reviews {
+    width: 100%;
+    float: none;
+    margin: 0;
+  }
+
+  #hero {
+    max-width: 100%;
+  }
+}
+
 @media (max-width: 768px) {
   nav ul {
     flex-direction: column;
     align-items: center;
+    gap: 10px;
   }
 
   #hero {
@@ -455,104 +368,27 @@ footer {
     margin-top: 1rem;
   }
 
-  .car-image img {
-    max-width: 80%;
-  }
-
-  .reviews {
-    float: none;
-    width: 100%;
-  }
-
-  .upgrades .grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  /* Vehicle Detail Responsive */
   .vehicle-detail {
     flex-direction: column;
-    gap: 15px;
   }
 
-  .vehicle-info h1 {
-    font-size: 1.5rem;
-  }
-
-  .vehicle-info p {
-    font-size: 0.95rem;
-  }
-
-  /* Classification Responsive */
-  .classification-container {
-    gap: 15px;
-  }
-
-  .vehicle-card .vehicle-info h2 {
-    font-size: 1.1rem;
-  }
-
-  .vehicle-card .vehicle-info p {
-    font-size: 0.9rem;
-  }
-
-  /* Login/Register responsive */
   .auth-container {
     width: 90%;
     padding: 1.5rem;
   }
-
-  .auth-form input {
-    font-size: 0.95rem;
-    padding: 0.65rem;
-  }
-
-  .auth-form .password-hint {
-    font-size: 0.8rem;
-  }
-
-  .btn-auth {
-    padding: 0.75rem;
-  }
-
-  .register-link {
-    font-size: 0.9rem;
-  }
 }
 
 @media (max-width: 480px) {
-  .vehicle-info h1 {
-    font-size: 1.25rem;
+  .siteName {
+    font-size: 1.4rem;
   }
 
-  .vehicle-info p {
-    font-size: 0.9rem;
-  }
-
-  .vehicle-card .vehicle-info h2 {
-    font-size: 1rem;
-  }
-
-  .vehicle-card .vehicle-info p {
-    font-size: 0.85rem;
-  }
-}
-
-@media (max-width: 400px) {
-  .auth-container {
-    width: 95%;
-    padding: 1rem;
-  }
-
-  .auth-container h1 {
-    font-size: 1.2rem;
+  nav a {
+    font-size: 0.8rem;
   }
 
   .auth-form input {
-    font-size: 0.9rem;
     padding: 0.6rem;
-  }
-
-  .auth-form .password-hint {
-    font-size: 0.75rem;
+    font-size: 0.9rem;
   }
 }
