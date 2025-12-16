@@ -336,6 +336,89 @@ footer {
   text-align: center;
 }
 
+/* ===============================
+   Inventory Management Table
+   =============================== */
+
+#inventoryDisplay {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+  font-family: inherit;
+}
+
+/* Table headings */
+#inventoryDisplay thead th {
+  text-align: left;
+  padding: 12px;
+  background-color: #f5f5f5;
+  font-size: 1rem;
+  border-bottom: 2px solid #ddd;
+}
+
+/* Table rows */
+#inventoryDisplay tbody tr {
+  border-bottom: 1px solid #eee;
+}
+
+/* Table cells */
+#inventoryDisplay td {
+  padding: 10px;
+  font-size: 0.95rem;
+}
+
+/* Modify/Delete links */
+#inventoryDisplay a {
+  text-decoration: none;
+  font-weight: 600;
+}
+
+#inventoryDisplay a:hover {
+  text-decoration: underline;
+}
+
+/* Flash messages */
+.flash-success {
+  background-color: #d4edda;
+  color: #155724;
+  padding: 10px;
+  border-radius: 6px;
+  margin-bottom: 15px;
+}
+
+.flash-error {
+  background-color: #f8d7da;
+  color: #721c24;
+  padding: 10px;
+  border-radius: 6px;
+  margin-bottom: 15px;
+}
+
+/* Responsive table */
+@media (max-width: 600px) {
+  #inventoryDisplay thead {
+    display: none;
+    /* hide the header */
+  }
+
+  #inventoryDisplay tbody tr {
+    display: block;
+    margin-bottom: 1rem;
+    border-bottom: 2px solid #ddd;
+    padding-bottom: 0.5rem;
+  }
+
+  #inventoryDisplay td {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 5px;
+  }
+
+  #inventoryDisplay td::before {
+    content: attr(data-label);
+    font-weight: bold;
+  }
+}
 /* =========================
    RESPONSIVE FIXES
 ========================= */

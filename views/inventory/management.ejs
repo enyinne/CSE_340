@@ -17,4 +17,24 @@
                         <li><a href="/inv/add-classification">Add New Classification</a></li>
                         <li><a href="/inv/add-inventory">Add New Inventory</a></li>
                     </ul>
+
+                    <!-- REQUIRED ADDITIONS START HERE -->
+
+                    <h2>Manage Inventory</h2>
+
+                    <p>Select a classification to see the corresponding inventory items.</p>
+
+                    <!-- classification select list passed from controller -->
+                    <%- classificationSelect %>
+
+                        <!-- empty table where JS will insert vehicles -->
+                        <table id="inventoryDisplay"></table>
+
+                        <!-- display message if JS disabled -->
+                        <noscript>JavaScript must be enabled to use this page.</noscript>
+
+                        <!-- attach the front-end JS file -->
+                        <script src="/js/inventory.js"></script>
+
+                        <!-- REQUIRED ADDITIONS END HERE -->
                 </section>

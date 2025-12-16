@@ -1,0 +1,94 @@
+<h1>
+    <%= title %>
+</h1>
+
+<!-- Flash Messages -->
+<% if (messages && Object.keys(messages).length> 0) { %>
+    <div class="flash-messages">
+        <% Object.keys(messages).forEach(type=> { %>
+            <% messages[type].forEach(msg=> { %>
+                <div class="alert <%= type %>">
+                    <%= msg %>
+                </div>
+                <% }) %>
+                    <% }) %>
+    </div>
+    <% } %>
+
+        <form action="/inv/update" method="post" class="auth-form">
+
+            <!-- ONE hidden inv_id ONLY -->
+            <input type="hidden" name="inv_id" value="<%= inv_id %>">
+
+            <!-- Classification -->
+            <label for="classification_id">Classification</label>
+            <%- classificationSelect %>
+
+                <!-- Make -->
+                <label for="inv_make">Make</label>
+                <input type="text" name="inv_make" id="inv_make" value="<%= inv_make %>" required>
+
+                <!-- Model -->
+                <label for="inv_model">Model</label>
+                <input type="text" name="inv_model" id="inv_model" value="<%= inv_model %>" required>
+
+                <!-- Year -->
+                <label for="inv_year">Year</label>
+                <input type="number" name="inv_year" id="inv_year" value="<%= inv_year %>" required>
+
+                <!-- Price -->
+                <label for="inv_price">Price</label>
+                <input type="number" name="inv_price" id="inv_price" value="<%= inv_price %>" required>
+
+                <!-- Miles -->
+                <label for="inv_mile">Miles</label>
+                <input type="number" name="inv_mile" id="inv_mile" value="<%= inv_mile %>" required>
+
+                <!-- Color -->
+                <label for="inv_color">Color</label>
+                <input type="text" name="inv_color" id="inv_color" value="<%= inv_color %>" required>
+
+                <!-- Description -->
+                <label for="inv_description">Description</label>
+                <textarea name="inv_description" id="inv_description" required><%= inv_description %></textarea>
+
+                <!-- Image -->
+                <label for="inv_image">Image Path</label>
+                <input type="text" name="inv_image" id="inv_image" value="<%= inv_image %>" required>
+
+                <!-- Thumbnail -->
+                <label for="inv_thumbnail">Thumbnail Path</label>
+                <input type="text" name="inv_thumbnail" id="inv_thumbnail" value="<%= inv_thumbnail %>" required>
+
+                <button type="submit" id="updateBtn" disabled>Update Vehicle</button>
+
+        </form>
+        <script>
+            const form = document.querySelector(".auth-form");
+            const updateBtn = document.getElementById("updateBtn");
+            const formElements = form.elements;
+
+            // Store initial values
+            const initialValues = {};
+            for (let element of formElements) {
+                if (element.name) {
+                    initialValues[element.name] = element.value;
+                }
+            }
+
+            // Enable button only if something changes
+            form.addEventListener("input", () => {
+                let changed = false;
+
+                for (let element of formElements) {
+                    if (element.name && element.value !== initialValues[element.name]) {
+                        changed = true;
+                        break;
+                    }
+                }
+
+                updateBtn.disabled = !changed;
+            });
+        </script>
+
+       

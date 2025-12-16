@@ -5,12 +5,20 @@ const router = new express.Router()
 const utilities = require("../utilities/")
 const accountController = require("../controllers/accountController")
 
+// DEFAULT ACCOUNT MANAGEMENT VIEW 
+router.get("/", utilities.checkLogin, utilities.handleErrors(accountController.buildAccountManagement))
+
 // task 4 Route to build login view
 router.get("/login", utilities.handleErrors(accountController.buildLogin))
 
 // Process login
-router.post("/login", utilities.handleErrors(accountController.accountLogin))
-
+//router.post("/login", utilities.handleErrors(accountController.accountLogin))
+router.post(
+  "/login",
+  regValidate.loginRules(),
+  regValidate.checkLoginData,
+  utilities.handleErrors(accountController.accountLogin)
+)
 
 // task 4 Route to build registration view
 router.get("/register", utilities.handleErrors(accountController.buildRegister))
@@ -23,6 +31,10 @@ router.post(
   regValidate.checkRegData,
   utilities.handleErrors(accountController.registerAccount)
 )
+
+router.get("/logout", utilities.handleErrors(accountController.accountLogout));
+
+
 
 // Login POST route (temporary for testing + validation)
 //router.post(

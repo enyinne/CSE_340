@@ -17,6 +17,8 @@ const session = require("express-session")
 const pool = require('./database/')
 const accountRoute = require("./routes/accountRoute")
 const bodyParser = require("body-parser")
+const cookieParser = require("cookie-parser")
+
 
 
 /* ***********************
@@ -28,10 +30,10 @@ const bodyParser = require("body-parser")
     pool,
   }),
   secret: process.env.SESSION_SECRET,
-  resave: true,
-  saveUninitialized: true,
+  resave: false,
+  saveUninitialized: false,
   name: 'sessionId',
- }))
+}))
 
  // Express Messages Middleware
 app.use(require('connect-flash')())
@@ -42,6 +44,29 @@ app.use(function(req, res, next){
 
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
+app.use(cookieParser())
+
+app.use(utilities.checkJWTToken)
+app.use((req, res, next) => {
+  const token = req.cookies.jwt;
+
+  if (token) {
+    res.locals.loggedin = true;
+    try {
+      const jwt = require("jsonwebtoken");
+      const decoded = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
+      res.locals.account = decoded;
+    } catch (err) {
+      res.locals.loggedin = false;
+      res.locals.account = null;
+    }
+  } else {
+    res.locals.loggedin = false;
+    res.locals.account = null;
+  }
+
+  next();
+});
 
 
 /* ***********************
@@ -50,6 +75,16 @@ app.use(bodyParser.urlencoded({ extended: true })) // for parsing application/x-
 app.set("view engine", "ejs")
 app.use(expressLayouts)
 app.set("layout", "./layouts/layout") // not at views root
+app.use((req, res, next) => {
+    res.locals.account = req.session.account || null; // or decode JWT if using tokens
+    next();
+});
+
+//app.use((req, res, next) => {
+  //res.locals.loggedin = 0
+  //next()
+//})
+
 
 /* ***********************
  * Routes
@@ -61,7 +96,7 @@ app.use(static)
 app.get("/", utilities.handleErrors(baseController.buildHome))
 
 // Inventory routes
-app.use("/inv", inventoryRoute)
+app.use("/inventory", inventoryRoute)
 
 // Account routes   
 app.use("/account", accountRoute)

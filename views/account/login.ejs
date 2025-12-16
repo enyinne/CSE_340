@@ -20,6 +20,8 @@
 
                     <section class="auth-container">
                         <form id="loginForm" action="/account/login" method="post" class="auth-form">
+                            <form id="loginForm" action="/account/login" method="post">
+
                             <label for="accountEmail">Email</label>
                             <input type="email" name="account_email" id="accountEmail" required
                                 value="<%= locals.account_email || '' %>">

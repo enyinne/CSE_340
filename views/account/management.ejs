@@ -1,0 +1,21 @@
+<h1>Account Management</h1>
+
+<!-- Flash Message -->
+<% if (messages && messages.length) { %>
+    <div class="notice">
+        <%= messages %>
+    </div>
+    <% } %>
+
+        <!-- Errors -->
+        <% if (errors) { %>
+            <div class="errors">
+                <% errors.forEach(error=> { %>
+                    <p>
+                        <%= error.msg %>
+                    </p>
+                    <% }) %>
+            </div>
+            <% } %>
+
+                <p>You're logged in.</p>
